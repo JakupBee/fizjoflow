@@ -51,7 +51,7 @@ body.blog-page main {
   color: #ffffff;
 }
 .btn--primary:hover {
-  background-color: rgb(15.8351648352, 49.6648351648, 115.1648351648);
+  background-color: #103273;
   transform: translateY(-2px);
 }
 
@@ -68,7 +68,8 @@ body.blog-page main {
   left: 0;
   width: 100%;
   background-color: rgba(244, 241, 238, 0.95);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   z-index: 1001;
   border-bottom: 1px solid rgba(22, 69, 160, 0.05);
 }
@@ -197,6 +198,7 @@ body.blog-page main {
   max-width: 800px;
 }
 .hero__content h1 {
+  font-family: "League Spartan", sans-serif;
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   color: #1645a0;
   line-height: 1.1;
@@ -205,6 +207,10 @@ body.blog-page main {
 .hero__content h1 .hero__line-break {
   display: block;
   margin-top: 0.5rem;
+}
+.hero__content h1 .highlight {
+  font-family: "Inter", sans-serif;
+  font-style: italic;
 }
 .hero__content p {
   font-size: 1.15rem;
@@ -388,7 +394,7 @@ body.blog-page main {
   transition: color 0.3s ease, opacity 0.3s ease;
 }
 .contact__info .contact__details li a:hover {
-  color: rgb(15.8351648352, 49.6648351648, 115.1648351648);
+  color: #103273;
   opacity: 0.95;
   text-decoration: underline;
 }
@@ -703,7 +709,7 @@ body.blog-page main {
   transition: all 0.3s ease;
 }
 .blog-post__read-more:hover, .blog-post__read-less:hover {
-  background-color: rgb(15.8351648352, 49.6648351648, 115.1648351648);
+  background-color: #103273;
   transform: translateY(-2px);
 }
 
@@ -777,13 +783,13 @@ body.blog-page main {
 .service-card__price {
   font-size: 0.875rem;
   font-weight: 700;
-  color: rgb(105.8695652174, 159.1304347826, 140.4891304348);
+  color: #6a9f8c;
   line-height: 1.2;
 }
 .service-card__time {
   font-size: 0.75rem;
   font-weight: 600;
-  color: rgb(105.8695652174, 159.1304347826, 140.4891304348);
+  color: #6a9f8c;
   line-height: 1.2;
 }
 .service-card__content {
@@ -812,7 +818,7 @@ body.blog-page main {
   justify-content: flex-start;
   padding: 0.5rem 0;
   background-color: transparent;
-  color: rgb(136.9130434783, 179.0869565217, 164.3260869565);
+  color: #89b3a4;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -822,7 +828,7 @@ body.blog-page main {
   margin-top: auto;
 }
 .service-card__btn:hover {
-  color: rgb(83.7391304348, 130.2608695652, 113.9782608696);
+  color: #548272;
 }
 .service-card__btn:hover .service-card__btn-arrow {
   transform: translateX(0.55rem);
@@ -908,7 +914,8 @@ body.blog-page main {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
   z-index: 2000;
   opacity: 0;
   visibility: hidden;
@@ -1027,7 +1034,7 @@ body.blog-page main {
   margin-bottom: 0.5rem;
 }
 .service-box__toggle:hover {
-  color: rgb(71.5, 143, 126.3493150685);
+  color: #488f7e;
 }
 .service-box__meta {
   display: flex;

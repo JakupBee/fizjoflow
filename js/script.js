@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	const overlay = document.getElementById("overlay");
 	const body = document.body;
 
+	// Ustaw automatyczny rok w stopce na wszystkich stronach
+	const currentYear = new Date().getFullYear();
+	document.querySelectorAll(".js-current-year").forEach((el) => {
+		el.textContent = currentYear;
+	});
+
 	// Prevent the browser from doing its own "early" hash jump before our offset logic runs.
 	// This is especially important when the page layout shifts after load (e.g. 3rd-party widgets).
 	if ("scrollRestoration" in history) {
@@ -96,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	navLinks.forEach((link) => {
 		link.addEventListener("click", (e) => {
 			const href = link.getAttribute("href");
-			
+
 			if (href && href.startsWith("#")) {
 				// All viewports: use offset scrolling so fixed navbar doesn't cover the section.
 				e.preventDefault();
@@ -138,8 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-
-// --- Pobieranie głównego zdjęcia z Contentful (sekcja O mnie) ---
+	// --- Pobieranie głównego zdjęcia z Contentful (sekcja O mnie) ---
 	async function loadMainPhoto() {
 		// Sprawdzenie, czy SDK Contentful jest załadowane
 		if (typeof contentful === "undefined") {
@@ -156,36 +161,39 @@ document.addEventListener("DOMContentLoaded", () => {
 		try {
 			// Pobranie zasobu z zakładki Media o tytule 'mainPhoto'
 			const response = await client.getAssets({
-				'fields.title': 'mainPhoto',
-				limit: 1
+				"fields.title": "mainPhoto",
+				limit: 1,
 			});
 
 			if (response.items.length > 0) {
 				const asset = response.items[0];
 				const imageUrl = asset.fields.file.url;
-				
+
 				// Wyszukanie obrazka w sekcji "O mnie"
-				const imgElement = document.querySelector('.about__image .image-box img');
-				
+				const imgElement = document.querySelector(
+					".about__image .image-box img"
+				);
+
 				if (imgElement) {
 					// Podmiana atrybutu src na link z Contentful
 					imgElement.src = `https:${imageUrl}`;
-					
+
 					// Opcjonalnie: aktualizacja atrybutu alt, jeśli dodano opis w Contentful
 					if (asset.fields.description) {
 						imgElement.alt = asset.fields.description;
 					}
 				}
 			} else {
-				console.log("Nie znaleziono zdjęcia o tytule 'mainPhoto' w zakładce Media.");
+				console.log(
+					"Nie znaleziono zdjęcia o tytule 'mainPhoto' w zakładce Media."
+				);
 			}
 		} catch (error) {
 			console.error("Błąd podczas pobierania zdjęcia mainPhoto:", error);
 		}
 	}
 
-	// Wywołujemy funkcję bezpośrednio, bo i tak jesteśmy już wewnątrz 
+	// Wywołujemy funkcję bezpośrednio, bo i tak jesteśmy już wewnątrz
 	// głównego document.addEventListener("DOMContentLoaded", ...) na samej górze pliku
 	loadMainPhoto();
-
 }); // <-- To jest prawidłowe zamknięcie całego pliku script.js
