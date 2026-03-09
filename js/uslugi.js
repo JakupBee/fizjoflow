@@ -1,22 +1,4 @@
-// Contentful Configuration
-const SPACE_ID = "4ixjtlu1qu2t";
-const ACCESS_TOKEN = "_kWA034q-PDeVGw0OHOKw53huGv0B059HrMkbeJBz1I";
 
-// Check if Contentful SDK is loaded
-if (typeof contentful === "undefined") {
-	console.error("Contentful SDK not loaded. Please check the CDN link.");
-}
-
-// Initialize Contentful client
-let client;
-try {
-	client = contentful.createClient({
-		space: SPACE_ID,
-		accessToken: ACCESS_TOKEN,
-	});
-} catch (error) {
-	console.error("Error initializing Contentful client:", error);
-}
 
 // Funkcja escape HTML
 function escapeHtml(text) {
@@ -160,29 +142,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 	if (!uslugiWrapper) return;
 
-	if (!client) {
-		uslugiWrapper.innerHTML = `
-			<div class="uslugi__error">
-				<h2>Błąd konfiguracji</h2>
-				<p>Nie udało się połączyć z Contentful. Sprawdź konfigurację.</p>
-			</div>
-		`;
-		return;
-	}
-
 	try {
 		// Show loading state
 		uslugiWrapper.innerHTML =
 			'<div class="uslugi__loading">Ładowanie usług...</div>';
 
 		// Fetch services from Contentful with content type "service"
-		const response = await client.getEntries({
-			content_type: "service",
-			order: "sys.createdAt",
-			limit: 100,
-		});
-
-		const services = response.items;
+		const response = await fetch('./json/uslugi-data.json');
+		const services = await response.json();
 
 		if (services.length === 0) {
 			uslugiWrapper.innerHTML = `

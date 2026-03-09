@@ -146,47 +146,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// --- Pobieranie głównego zdjęcia z Contentful (sekcja O mnie) ---
 	async function loadMainPhoto() {
-		// Sprawdzenie, czy SDK Contentful jest załadowane
-		if (typeof contentful === "undefined") {
-			console.error("Contentful SDK nie jest załadowane na stronie głównej.");
-			return;
-		}
-
-		// Inicjalizacja klienta
-		const client = contentful.createClient({
-			space: "4ixjtlu1qu2t",
-			accessToken: "_kWA034q-PDeVGw0OHOKw53huGv0B059HrMkbeJBz1I",
-		});
-
 		try {
-			// Pobranie zasobu z zakładki Media o tytule 'mainPhoto'
-			const response = await client.getAssets({
-				"fields.title": "mainPhoto",
-				limit: 1,
-			});
-
-			if (response.items.length > 0) {
-				const asset = response.items[0];
+			const response = await fetch('./json/photo-data.json');
+			const items = await response.json();
+	
+			if (items.length > 0) {
+				const asset = items[0];
 				const imageUrl = asset.fields.file.url;
-
-				// Wyszukanie obrazka w sekcji "O mnie"
-				const imgElement = document.querySelector(
-					".about__image .image-box img"
-				);
-
+				const imgElement = document.querySelector(".about__image .image-box img");
+	
 				if (imgElement) {
-					// Podmiana atrybutu src na link z Contentful
 					imgElement.src = `https:${imageUrl}`;
-
-					// Opcjonalnie: aktualizacja atrybutu alt, jeśli dodano opis w Contentful
 					if (asset.fields.description) {
 						imgElement.alt = asset.fields.description;
 					}
 				}
-			} else {
-				console.log(
-					"Nie znaleziono zdjęcia o tytule 'mainPhoto' w zakładce Media."
-				);
 			}
 		} catch (error) {
 			console.error("Błąd podczas pobierania zdjęcia mainPhoto:", error);

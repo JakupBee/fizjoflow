@@ -1,23 +1,3 @@
-// Contentful Configuration
-const SPACE_ID = '4ixjtlu1qu2t';
-const ACCESS_TOKEN = '_kWA034q-PDeVGw0OHOKw53huGv0B059HrMkbeJBz1I';
-
-// Check if Contentful SDK is loaded
-if (typeof contentful === 'undefined') {
-	console.error('Contentful SDK not loaded. Please check the CDN link.');
-}
-
-// Initialize Contentful client
-let client;
-try {
-	client = contentful.createClient({
-		space: SPACE_ID,
-		accessToken: ACCESS_TOKEN,
-	});
-} catch (error) {
-	console.error('Error initializing Contentful client:', error);
-}
-
 // Helper function to format date
 function formatDate(dateString) {
 	const date = new Date(dateString);
@@ -283,28 +263,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 	
 	if (!blogWrapper) return;
 
-	if (!client) {
-		blogWrapper.innerHTML = `
-			<div class="blog__error">
-				<h2>Błąd konfiguracji</h2>
-				<p>Nie udało się połączyć z Contentful. Sprawdź konfigurację.</p>
-			</div>
-		`;
-		return;
-	}
-
 	try {
 		// Show loading state
 		blogWrapper.innerHTML = '<div class="blog__loading">Ładowanie artykułów...</div>';
 
 		// Fetch blog posts from Contentful with content type "blog"
-		const response = await client.getEntries({
-			content_type: 'blog',
-			order: '-sys.createdAt',
-			limit: 100,
-		});
-
-		const posts = response.items;
+		const response = await fetch('./json/blog-data.json');
+		const posts = await response.json();
 
 		if (posts.length === 0) {
 			blogWrapper.innerHTML = `
