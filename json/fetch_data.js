@@ -33,6 +33,14 @@ async function fetchData() {
             order: 'sys.createdAt',
             limit: 100,
         });
+
+	// 👇 ADD THIS DEBUG LINE 👇
+        console.log('🕵️ DEBUG: Number of services found:', uslugiResponse.items.length);
+        if (uslugiResponse.items.length > 0) {
+            console.log('🕵️ DEBUG: First service title is:', uslugiResponse.items[0].fields.name);
+        }
+        // 👆 END DEBUG LINE 👆
+
         fs.writeFileSync('./json/uslugi-data.json', JSON.stringify(uslugiResponse.items));
         console.log('✅ Services data saved!');
 
