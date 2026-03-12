@@ -24,7 +24,7 @@ async function fetchData() {
             order: '-sys.createdAt',
             limit: 100,
         });
-        fs.writeFileSync('./json/blog-data.json', JSON.stringify(blogResponse.items));
+        fs.writeFileSync('./blog-data.json', JSON.stringify(blogResponse.items));
         console.log('✅ Blog data saved!');
 
         // 2. Fetch Services (Usługi)
@@ -41,7 +41,7 @@ async function fetchData() {
         }
         // 👆 END DEBUG LINE 👆
 
-        fs.writeFileSync('./json/uslugi-data.json', JSON.stringify(uslugiResponse.items));
+        fs.writeFileSync('./uslugi-data.json', JSON.stringify(uslugiResponse.items));
         console.log('✅ Services data saved!');
 
         // 3. Fetch Main Photo (for script.js)
@@ -49,7 +49,7 @@ async function fetchData() {
             'fields.title': 'mainPhoto',
             limit: 1,
         });
-        fs.writeFileSync('./json/photo-data.json', JSON.stringify(photoResponse.items));
+        fs.writeFileSync('./photo-data.json', JSON.stringify(photoResponse.items));
         console.log('✅ Main photo data saved!');
 
     } catch (error) {
