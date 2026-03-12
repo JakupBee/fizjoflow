@@ -1,0 +1,21 @@
+name: Twice Daily Cloudflare Build
+
+on:
+  schedule:
+    # This standard cron syntax runs at 08:00 and 20:00 UTC every day
+    - cron: '0 8,20 * * *'
+  workflow_dispatch: # This adds a manual "Run workflow" button in GitHub just in case!
+
+jobs:
+  trigger-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Push empty commit to trigger Cloudflare
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Auto-trigger Cloudflare Build"
+          git push
