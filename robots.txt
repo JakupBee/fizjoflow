@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://twojadomena.pl/sitemap.xml
+Sitemap: http://fizjoflow-suminski.pl/sitemap.xml
