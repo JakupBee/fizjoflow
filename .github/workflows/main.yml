@@ -37,11 +37,20 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin master
           
-          # Dodajemy do zapisu tylko pliki JSON
+          # 1. Najpierw dodajemy pobrane przed chwilą pliki JSON
           git add json/*.json
           
-          # Sprawdza czy pliki faktycznie się zmieniły. Jeśli tak - zapisuje je w repo.
-          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update: pobrano nowe dane z Contentful"
-          git push origin HEAD:master
+          # 2. Sprawdzamy, czy w ogóle nastąpiły jakieś zmiany w plikach
+          if git diff --staged --quiet; then
+            echo "Brak nowych lub zmienionych danych z Contentful. Pomijam aktualizację."
+          else
+            # 3. Jeśli są zmiany, najpierw je zapisujemy (commitujemy)
+            git commit -m "Auto-update: pobrano nowe dane z Contentful"
+          
+            # 4. TERAZ pobieramy nowości z serwera, unikając błędu o niezapisanych plikach
+            git pull --rebase origin master
+          
+            # 5. Wysyłamy całość na GitHuba
+            git push origin HEAD:master
+          fi
