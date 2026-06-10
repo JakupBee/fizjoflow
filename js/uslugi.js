@@ -68,7 +68,7 @@ function renderRichText(node) {
 	}
 }
 
-// Funkcja generująca HTML karty - IDENTYCZNA jak w uslugi-cards.js
+// Funkcja generująca HTML karty z zachowaniem SEO (ukryty opis)
 function createServiceCard(service) {
 	return `
 		<article class="service-card" data-service-id="${service.id}">
@@ -80,9 +80,15 @@ function createServiceCard(service) {
 			</div>
 			<div class="service-card__content">
 				<h3 class="service-card__title">${escapeHtml(service.name)}</h3>
+				
+                <!-- SEO ukryty tekst, renderowany z Contentfula -->
+                <div class="visually-hidden">
+                    ${renderDescription(service.description)}
+                </div>
+
 				<button class="service-card__btn" data-service-id="${
-					service.id
-				}" aria-label="Pokaż opis usługi ${escapeHtml(service.name)}">
+		service.id
+	}" aria-label="Pokaż opis usługi ${escapeHtml(service.name)}">
 					Opis <span class="service-card__btn-arrow">→</span>
 				</button>
 			</div>
@@ -143,9 +149,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (!uslugiWrapper) return;
 
 	try {
-		// Show loading state
-		uslugiWrapper.innerHTML =
-			'<div class="uslugi__loading">Ładowanie usług...</div>';
+		// // Show loading state
+		// uslugiWrapper.innerHTML =
+		// 	'<div class="uslugi__loading">Ładowanie usług...</div>';
 
 		// Fetch services from Contentful with content type "service"
 		const response = await fetch('./json/uslugi-data.json');
