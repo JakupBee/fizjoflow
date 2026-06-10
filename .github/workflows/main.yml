@@ -1,20 +1,16 @@
-name: Twice Daily Cloudflare Build
+name: Twice Daily Contentful Fetch & Build
 
 on:
   schedule:
-    # This standard cron syntax runs at 08:00 and 20:00 UTC every day
     - cron: '0 8,20 * * *'
-  workflow_dispatch: # This adds a manual "Run workflow" button in GitHub just in case!
+  workflow_dispatch:
 
-# NAPRAWA OSTRZEŻENIA NODE.JS: Wymusza użycie nowej wersji Node 24
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  trigger-build:
+  update-data:
     runs-on: ubuntu-latest
-
-    # NAPRAWA BŁĘDU 128: Nadajemy botowi uprawnienia do zrobienia "git push"
     permissions:
       contents: write
 
@@ -22,9 +18,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Push empty commit to trigger Cloudflare
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies and fetch data
+        working-directory: ./json
+        env:
+          # Skrypt pobierze te wartości z bezpiecznego sejfu GitHuba
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        run: |
+          npm install
+          node fetch_data.js
+
+      - name: Commit and push updated JSONs
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit --allow-empty -m "Auto-trigger Cloudflare Build"
-          git push
+          git pull --rebase origin master
+          
+          # Dodajemy do zapisu tylko pliki JSON
+          git add json/*.json
+          
+          # Sprawdza czy pliki faktycznie się zmieniły. Jeśli tak - zapisuje je w repo.
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update: pobrano nowe dane z Contentful"
+          git push origin HEAD:master
