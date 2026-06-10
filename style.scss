@@ -132,6 +132,7 @@ body {
 }
 
 .nav-menu {
+
 	position: fixed;
 	top: 5rem;
 	left: 0;
@@ -160,12 +161,20 @@ body {
 			font-size: 1.2rem;
 			font-weight: 500;
 			transition: color 0.3s ease;
+
+			font-family: "League Spartan", sans-serif;
+			color: #3a3a3a;
+			display: inline-flex;  /* Pozwala precyzyjniej kontrolować ułożenie */
+			align-items: center;   /* Próbuje wymusić wyśrodkowanie */
+			line-height: 1;        /* Ucina nadmiar pustego miejsca z metryk czcionki */
+			padding-top: 3px;
 			&:hover {
 				color: $primary-blue;
 			}
 		}
 	}
 }
+
 
 .hamburger {
 	display: flex;
@@ -214,7 +223,7 @@ body {
 	display: flex;
 	align-items: center;
 	position: relative;
-	background-image: url("../img/herograph.jpeg");
+	background-image: url("../img/herograph.webp");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -224,9 +233,12 @@ body {
 		inset: 0;
 		background: linear-gradient(
 			90deg,
-			rgba($bg-color, 1) 45%,
-			rgba($bg-color, 0.6) 65%,
-			rgba($bg-color, 0.8) 100%
+			rgba($bg-color, 1) 2%,
+			rgba($bg-color, 0.85) 35%,
+			rgba($bg-color, 0.6) 50%,
+			rgba($bg-color, 0.45) 70%,
+			rgba($bg-color, 0.3) 85%,
+			rgba($bg-color, 0.1) 100%
 		);
 		z-index: 1;
 	}
@@ -253,7 +265,30 @@ body {
 			font-size: 1.15rem;
 			max-width: 35rem;
 			margin-bottom: ($grid-unit * 5);
-			font-weight: 500;
+			font-weight: 600;
+		}
+	}
+	@media (max-width: 768px) {
+		background-image: url("../img/herographMobile.webp");
+
+		p {
+			color: #292b42;
+			font-size: 1.15rem;
+			max-width: 35rem;
+			margin-bottom: ($grid-unit * 5);
+			font-weight: 520;
+		}
+
+		background-position: 30% center;
+
+		&::before {
+			background: linear-gradient(
+				90deg,
+				rgba($bg-color, 1) 20%,
+				rgba($bg-color, 0.70) 60%,
+				rgba($bg-color, 0.6) 80%,
+				rgba($bg-color, 0.4) 100%
+			);
 		}
 	}
 }
@@ -1543,4 +1578,13 @@ body {
 			font-size: 0.85rem; // Slightly smaller toggle text
 		}
 	}
+}
+
+// --- UKRYCIE ZNAKU WODNEGO ELFSIGHT (DEMO) ---
+div[class*="elfsight-app"] a[href*="elfsight.com"],
+a[href*="elfsight.com"] {
+	display: none !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
 }

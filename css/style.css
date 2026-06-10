@@ -142,6 +142,12 @@ body.blog-page main {
   font-size: 1.2rem;
   font-weight: 500;
   transition: color 0.3s ease;
+  font-family: "League Spartan", sans-serif;
+  color: #3a3a3a;
+  display: inline-flex; /* Pozwala precyzyjniej kontrolować ułożenie */
+  align-items: center; /* Próbuje wymusić wyśrodkowanie */
+  line-height: 1; /* Ucina nadmiar pustego miejsca z metryk czcionki */
+  padding-top: 3px;
 }
 .nav-menu ul a:hover {
   color: #1645a0;
@@ -191,7 +197,7 @@ body.blog-page main {
   display: flex;
   align-items: center;
   position: relative;
-  background-image: url("../img/herograph.jpeg");
+  background-image: url("../img/herograph.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -200,7 +206,7 @@ body.blog-page main {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #f4f1ee 45%, rgba(244, 241, 238, 0.6) 65%, rgba(244, 241, 238, 0.8) 100%);
+  background: linear-gradient(90deg, #f4f1ee 2%, rgba(244, 241, 238, 0.85) 35%, rgba(244, 241, 238, 0.6) 50%, rgba(244, 241, 238, 0.45) 70%, rgba(244, 241, 238, 0.3) 85%, rgba(244, 241, 238, 0.1) 100%);
   z-index: 1;
 }
 .hero__content {
@@ -227,7 +233,25 @@ body.blog-page main {
   font-size: 1.15rem;
   max-width: 35rem;
   margin-bottom: 2.5rem;
-  font-weight: 500;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .hero {
+    background-image: url("../img/herographMobile.webp");
+  }
+  .hero p {
+    color: #292b42;
+    font-size: 1.15rem;
+    max-width: 35rem;
+    margin-bottom: 2.5rem;
+    font-weight: 520;
+  }
+  .hero {
+    background-position: 30% center;
+  }
+  .hero::before {
+    background: linear-gradient(90deg, #f4f1ee 20%, rgba(244, 241, 238, 0.7) 60%, rgba(244, 241, 238, 0.6) 80%, rgba(244, 241, 238, 0.4) 100%);
+  }
 }
 
 @media (min-width: 1200px) {
@@ -1313,6 +1337,13 @@ body.blog-page main {
   .service-box__toggle {
     font-size: 0.85rem;
   }
+}
+div[class*=elfsight-app] a[href*="elfsight.com"],
+a[href*="elfsight.com"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /*# sourceMappingURL=style.css.map */

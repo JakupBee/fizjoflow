@@ -167,6 +167,25 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	// --- Ukrywanie znaczka Elfsight "Free Google Reviews" (na potrzeby Demo) ---
+	const removeElfsightBadge = setInterval(() => {
+		// Szukamy wszystkich linków wstrzykniętych przez widget, które prowadzą do Elfsight
+		const elfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
+
+		elfsightLinks.forEach(link => {
+			// Brutalnie ukrywamy element, nadpisując jego wbudowane style
+			link.style.setProperty('display', 'none', 'important');
+			link.style.setProperty('opacity', '0', 'important');
+			link.style.setProperty('pointer-events', 'none', 'important');
+		});
+	}, 300); // Skrypt sprawdza obecność znaczka co 300 milisekund
+
+	// Ubijamy nasz sprawdzacz po 8 sekundach, by nie obciążał przeglądarki
+	// (do tego czasu widget Elfsight na 100% zdąży się już załadować)
+	setTimeout(() => {
+		clearInterval(removeElfsightBadge);
+	}, 8000);
+
 	// Wywołujemy funkcję bezpośrednio, bo i tak jesteśmy już wewnątrz
 	// głównego document.addEventListener("DOMContentLoaded", ...) na samej górze pliku
 	loadMainPhoto();
