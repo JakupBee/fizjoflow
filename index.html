@@ -17,14 +17,26 @@
     <meta name="twitter:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
     <title>Fizjoterapia i Osteopatia Ząbki | FizjoFlow Michał Sumiński</title>
     <meta name="description" content="Skuteczna fizjoterapia, osteopatia i rehabilitacja w Ząbkach. Ból kręgosłupa, stany po urazach i operacjach ortopedycznych. Umów wizytę w FizjoFlow!">
+
+    <link rel="preload" as="image" href="img/herographMobile.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="img/herograph.webp" media="(min-width: 769px)" fetchpriority="high">
+
+    <link rel="preload" href="./json/photo-data.json" as="fetch" crossorigin="anonymous">
+
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+
     <link rel="icon" type="image/png" href="img/logo-small.webp">
     <link rel="apple-touch-icon" href="img/logo-small.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap">
+    </noscript>
+
     <link rel="canonical" href="https://fizjoflow-suminski.pl/">
 
     <script type="application/ld+json">
@@ -224,11 +236,9 @@
                     <div class="contact__info">
                         <span class="contact__subtitle">Bądźmy w kontakcie</span>
                         <h2>Gabinet Fizjoterapii Ząbki – Kontakt i Dojazd</h2>
-                        
-                        <div class="booksy__widget" style="margin-bottom: 20px;">
-                            <script defer type="text/javascript"
-                                src="https://booksy.com/widget/code.js?id=333038&country=pl&lang=pl"></script>
-                        </div>
+
+                        <!-- Skrypt Booksy zostanie tu wstrzyknięty przez JS -->
+                        <div class="booksy__widget" style="margin-bottom: 20px;"></div>
 
                         <ul class="contact__details">
                             <li>
@@ -319,8 +329,7 @@
 
     </footer>
 
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 
 </html>

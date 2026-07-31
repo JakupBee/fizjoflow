@@ -189,4 +189,35 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Wywołujemy funkcję bezpośrednio, bo i tak jesteśmy już wewnątrz
 	// głównego document.addEventListener("DOMContentLoaded", ...) na samej górze pliku
 	loadMainPhoto();
+
+	// --- OPÓŹNIONE ŁADOWANIE ZEWNĘTRZNYCH WIDGETÓW (SEO & PageSpeed) ---
+	let widgetsLoaded = false;
+
+	const loadExternalWidgets = () => {
+		if (widgetsLoaded) return;
+		widgetsLoaded = true;
+
+		// 1. Ładowanie Elfsight (Opinie Google)
+		const elfsightScript = document.createElement('script');
+		elfsightScript.src = "https://elfsightcdn.com/platform.js";
+		elfsightScript.async = true;
+		document.body.appendChild(elfsightScript);
+
+		// 2. Ładowanie Booksy
+		const booksyContainer = document.querySelector('.booksy__widget');
+		if (booksyContainer) {
+			const booksyScript = document.createElement('script');
+			booksyScript.src = "https://booksy.com/widget/code.js?id=333038&country=pl&lang=pl";
+			booksyScript.type = "text/javascript";
+			booksyContainer.appendChild(booksyScript);
+		}
+	};
+
+	// Nasłuchuj pierwszej interakcji użytkownika, aby załadować ciężkie skrypty
+	['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(event => {
+		window.addEventListener(event, loadExternalWidgets, { once: true, passive: true });
+	});
+
+	// Zabezpieczenie (Fallback): jeśli użytkownik nie wykona żadnego ruchu przez 5 sekund, załaduj widgety automatycznie
+	setTimeout(loadExternalWidgets, 5000);
 }); // <-- To jest prawidłowe zamknięcie całego pliku script.js
