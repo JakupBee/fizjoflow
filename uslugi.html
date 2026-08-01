@@ -13,8 +13,25 @@
     <meta property="og:description" content="Sprawdź cennik fizjoterapii i rehabilitacji w Ząbkach. Leczenie bólu kręgosłupa, fizjoterapia pourazowa i pooperacyjna.">
     <meta property="og:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
 
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background-color: #f4f1ee; color: #030d19; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; line-height: 1.3; overflow-x: hidden; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; }
+        .navbar { height: 5rem; display: flex; align-items: center; position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(244, 241, 238, 0.95); z-index: 1001; border-bottom: 1px solid rgba(22, 69, 160, 0.05); }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .navbar .logo img { max-height: 4.5rem; width: auto; display: block; }
+        .hero, .blog, .uslugi { margin-top: 5rem; }
+        .hero { min-height: calc(100vh - 5rem); display: flex; align-items: center; background-color: #f4f1ee; }
+        .hamburger { display: flex; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; background: none; border: none; z-index: 1002; }
+        .hamburger .bar { width: 100%; height: 3px; background-color: #030d19; }
+        @media (min-width: 992px) { .hamburger { display: none; } }
+    </style>
+
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="css/style.css">
+    </noscript>
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap" media="print" onload="this.media='all'">

@@ -211,6 +211,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			booksyScript.type = "text/javascript";
 			booksyContainer.appendChild(booksyScript);
 		}
+
+		// 3. Ładowanie mapy Google
+		const mapIframe = document.querySelector('.lazy-map');
+		if (mapIframe && mapIframe.dataset.src) {
+			mapIframe.src = mapIframe.dataset.src;
+		}
 	};
 
 	// Nasłuchuj pierwszej interakcji użytkownika, aby załadować ciężkie skrypty
