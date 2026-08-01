@@ -7,22 +7,36 @@
     <title>Blog | FizjoFlow</title>
     <meta name="description" content="Artykuły i porady dotyczące fizjoterapii i zdrowia.">
 
+    <!-- KRYTYCZNY CSS (Critical CSS) do natychmiastowego renderowania góry strony -->
     <style>
+        /* 1. Zatrzymanie animacji podczas ładowania (usuwa ruszanie się przycisków) */
+        body.is-loading * { transition: none !important; animation: none !important; }
+
+        /* 2. Krytyczny szkielet */
         *, *::before, *::after { box-sizing: border-box; }
         body { margin: 0; padding: 0; background-color: #f4f1ee; color: #030d19; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; line-height: 1.3; overflow-x: hidden; }
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; }
+
+        /* 3. Nawigacja (zabezpieczenie przed skokami menu) */
         .navbar { height: 5rem; display: flex; align-items: center; position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(244, 241, 238, 0.95); z-index: 1001; border-bottom: 1px solid rgba(22, 69, 160, 0.05); }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
         .navbar .logo img { max-height: 4.5rem; width: auto; display: block; }
+        .nav-menu { display: none; }
+        @media (min-width: 992px) {
+            .hamburger { display: none; }
+            .nav-menu { display: block; }
+        }
+
+        /* 4. Sekcja Hero i Przycisk (ustalamy ich rozmiar, by nie było CLS) */
         .hero, .blog, .uslugi { margin-top: 5rem; }
         .hero { min-height: calc(100vh - 5rem); display: flex; align-items: center; background-color: #f4f1ee; }
-        .hamburger { display: flex; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; background: none; border: none; z-index: 1002; }
-        .hamburger .bar { width: 100%; height: 3px; background-color: #030d19; }
-        @media (min-width: 992px) { .hamburger { display: none; } }
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; }
+        .btn--primary { background-color: #1645a0; color: #ffffff; }
     </style>
 
+    <!-- Asynchroniczne ładowanie arkusza stylów - ONLOAD zdejmuje klasę is-loading! -->
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'; document.body.classList.remove('is-loading');">
     <noscript>
         <link rel="stylesheet" href="css/style.css">
     </noscript>
@@ -39,7 +53,7 @@
     </noscript>
 </head>
 
-<body class="blog-page">
+<body class="blog-page is-loading">
 
     <div class="menu-overlay" id="overlay"></div>
 
