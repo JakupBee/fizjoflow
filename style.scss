@@ -85,7 +85,7 @@ body {
 }
 
 .highlight {
-	color: $accent-teal;
+	color: darken($accent-teal, 15%);
 }
 
 // --- 4. NAWIGACJA ---
@@ -398,7 +398,7 @@ body {
 		order: 1;
 		.about__subtitle {
 			display: block;
-			color: $accent-teal;
+			color: darken($accent-teal, 15%);
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 1px;

@@ -68,7 +68,7 @@ body.blog-page main {
 }
 
 .highlight {
-  color: #6db6a5;
+  color: rgb(71.5, 143, 126.3493150685);
 }
 
 .navbar {
@@ -357,7 +357,7 @@ body.blog-page main {
 }
 .about__content .about__subtitle {
   display: block;
-  color: #6db6a5;
+  color: rgb(71.5, 143, 126.3493150685);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;

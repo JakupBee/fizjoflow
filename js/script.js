@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// --- Ukrywanie znaczka Elfsight "Free Google Reviews" (na potrzeby Demo) ---
+	/*// --- Ukrywanie znaczka Elfsight "Free Google Reviews" (na potrzeby Demo) ---
 	const removeElfsightBadge = setInterval(() => {
 		// Szukamy wszystkich linków wstrzykniętych przez widget, które prowadzą do Elfsight
 		const elfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// (do tego czasu widget Elfsight na 100% zdąży się już załadować)
 	setTimeout(() => {
 		clearInterval(removeElfsightBadge);
-	}, 8000);
+	}, 8000);*/
 
 	// Wywołujemy funkcję bezpośrednio, bo i tak jesteśmy już wewnątrz
 	// głównego document.addEventListener("DOMContentLoaded", ...) na samej górze pliku
@@ -225,5 +225,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	// Zabezpieczenie (Fallback): jeśli użytkownik nie wykona żadnego ruchu przez 5 sekund, załaduj widgety automatycznie
-	setTimeout(loadExternalWidgets, 5000);
+	// setTimeout(loadExternalWidgets, 5000);
 }); // <-- To jest prawidłowe zamknięcie całego pliku script.js
