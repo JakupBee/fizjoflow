@@ -141,7 +141,7 @@ body {
 	padding: ($grid-unit * 10) 0;
 	transform: translateY(-100%);
 	transition: transform $transition, opacity $transition;
-	z-index: 1000;
+	z-index: -1;
 	opacity: 0;
 	pointer-events: none;
 	&.active {
@@ -1387,6 +1387,7 @@ body {
 		transform: none;
 		opacity: 1;
 		pointer-events: auto;
+		z-index: auto;
 		ul {
 			flex-direction: row;
 			gap: ($grid-unit * 6);
