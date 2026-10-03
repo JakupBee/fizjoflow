@@ -33,6 +33,56 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Zamknij menu po kliknięciu w przyciemnienie
 	overlay.addEventListener("click", toggleMenu);
 
+	// --- Przejścia między stronami ---
+	// Wejście na stronę (fade-in) jest realizowane czystym CSS (animacja na <body> w inline <style>).
+	// Tutaj obsługujemy tylko wyjście (fade-out) przed przejściem do innej podstrony.
+	const PAGE_TRANSITION_MS = 400;
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)"
+	).matches;
+
+	const normalizePath = (pathname) => pathname.replace(/index\.html$/, "");
+
+	document.addEventListener("click", (e) => {
+		if (prefersReducedMotion) return;
+		if (e.defaultPrevented || e.button !== 0) return;
+		if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+		const link = e.target.closest("a[href]");
+		if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+
+		let url;
+		try {
+			url = new URL(link.href, window.location.href);
+		} catch (err) {
+			return;
+		}
+
+		// Tylko linki http(s)/file do tej samej witryny, prowadzące do INNEJ podstrony
+		// (linki kotwic na tej samej stronie obsługuje przewijanie powyżej).
+		if (!/^(https?|file):$/.test(url.protocol)) return;
+		if (url.origin !== window.location.origin) return;
+		if (normalizePath(url.pathname) === normalizePath(window.location.pathname)) return;
+
+		e.preventDefault();
+
+		if (navMenu.classList.contains("active")) {
+			toggleMenu();
+		}
+
+		body.classList.add("page-transition-out");
+		setTimeout(() => {
+			window.location.href = url.href;
+		}, PAGE_TRANSITION_MS);
+	});
+
+	// Powrót przyciskiem "wstecz" (bfcache) – przywróć widoczność strony
+	window.addEventListener("pageshow", (e) => {
+		if (e.persisted) {
+			body.classList.remove("page-transition-out");
+		}
+	});
+
 	// Handle anchor clicks: smooth scroll with offset (navbar height + section padding)
 	const navLinks = document.querySelectorAll(".nav-menu a");
 	function getTopForHash(hash) {
@@ -83,9 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			const stableEnough =
 				lastDesiredTop !== null && Math.abs(lastDesiredTop - desiredTop) <= 1;
 
-			// Use "auto" here to correct position without a long smooth animation fight.
+			// "instant" (not "auto"): CSS has scroll-behavior: smooth on <html>, which "auto" would follow
+			// and which would fight with the browser's own hash jump.
 			if (!closeEnough) {
-				window.scrollTo({ top: desiredTop, behavior: "auto" });
+				window.scrollTo({ top: desiredTop, behavior: "instant" });
 			}
 
 			if (attempts >= maxAttempts || (closeEnough && stableEnough)) return;
@@ -146,6 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// --- Pobieranie głównego zdjęcia z Contentful (sekcja O mnie) ---
 	async function loadMainPhoto() {
+		// Tylko strona główna ma sekcję "O mnie" ze zdjęciem (omija zbędny request na podstronach, np. /blog/*)
+		if (!document.querySelector(".about__image .image-box img")) return;
 		try {
 			const response = await fetch('./json/photo-data.json');
 			const items = await response.json();
@@ -197,11 +250,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (widgetsLoaded) return;
 		widgetsLoaded = true;
 
-		// 1. Ładowanie Elfsight (Opinie Google)
-		const elfsightScript = document.createElement('script');
-		elfsightScript.src = "https://elfsightcdn.com/platform.js";
-		elfsightScript.async = true;
-		document.body.appendChild(elfsightScript);
+		// 1. Ładowanie Elfsight (Opinie Google) - tylko na stronach, które mają widget
+		if (document.querySelector('[class*="elfsight-app"]')) {
+			const elfsightScript = document.createElement('script');
+			elfsightScript.src = "https://elfsightcdn.com/platform.js";
+			elfsightScript.async = true;
+			document.body.appendChild(elfsightScript);
+		}
 
 		// 2. Ładowanie Booksy
 		const booksyContainer = document.querySelector('.booksy__widget');

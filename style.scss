@@ -33,6 +33,10 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 	opacity: 1;
+	transition: opacity 0.4s ease-in-out;
+	&.page-transition-out {
+		opacity: 0;
+	}
 	&.no-scroll {
 		overflow: hidden;
 	}
@@ -220,6 +224,7 @@ body {
 .hero {
 	min-height: calc(100vh - 5rem);
 	margin-top: 5rem;
+	scroll-margin-top: 5rem; // skok do #home ląduje na samej górze strony (kompensuje margin-top)
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -854,6 +859,211 @@ body {
 			transform: translateY(-2px);
 		}
 	}
+}
+
+// --- 7.5b. BLOG: LISTA ARTYKUŁÓW I POJEDYNCZY ARTYKUŁ ---
+// Węższa kolumna dla czytelności na stronie pojedynczego artykułu
+.blog__wrapper--article {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.breadcrumbs {
+	font-size: 0.9rem;
+	margin-bottom: ($grid-unit * 4);
+	opacity: 0.85;
+
+	a {
+		color: $primary-blue;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	span {
+		margin: 0 ($grid-unit * 0.75);
+	}
+}
+
+// Tytuł-link na liście artykułów
+.blog-post__title a {
+	color: inherit;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.blog-post__excerpt {
+	font-size: 1.05rem;
+	line-height: 1.7;
+	margin-bottom: ($grid-unit * 3);
+	opacity: 0.9;
+}
+
+// Pojedynczy artykuł: bez "unoszenia" karty po najechaniu
+.blog-post--single:hover {
+	transform: none;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.blog-post__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: ($grid-unit * 3);
+}
+
+.blog-post__link,
+.blog-post__back a {
+	color: $primary-blue;
+	font-weight: 600;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.blog-post__back {
+	margin-top: ($grid-unit * 4);
+}
+
+// Autor w linii z datą
+.blog-post__meta .blog-post__author {
+	font-size: 0.9rem;
+	font-weight: 500;
+	text-transform: none;
+	letter-spacing: 0;
+	opacity: 0.75;
+}
+
+// Nagłówki w treści artykułu (h2 – sekcje, h3 – podsekcje)
+.blog-post__article-text {
+	h2 {
+		font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+		line-height: 1.25;
+		color: $primary-blue;
+		font-weight: 700;
+		margin: ($grid-unit * 6) 0 ($grid-unit * 2);
+		padding-bottom: $grid-unit;
+		border-bottom: 2px solid rgba($primary-blue, 0.1);
+		scroll-margin-top: ($grid-unit * 13); // pod stałym paskiem nawigacji
+	}
+	h3 {
+		font-size: 1.2rem;
+		line-height: 1.3;
+		margin-top: ($grid-unit * 4);
+		margin-bottom: $grid-unit;
+	}
+}
+
+// Spis treści (linki skokowe do sekcji)
+.blog-toc {
+	background-color: rgba($accent-teal, 0.12);
+	border-left: 4px solid $accent-teal;
+	border-radius: 0 $br-radius $br-radius 0;
+	padding: ($grid-unit * 2.5) ($grid-unit * 3);
+	margin: ($grid-unit * 4) 0;
+
+	.blog-toc__title {
+		font-weight: 700;
+		color: $primary-blue;
+		margin-bottom: $grid-unit;
+	}
+
+	ol {
+		margin: 0;
+		padding-left: ($grid-unit * 3);
+		@media (min-width: 768px) {
+			columns: 2;
+			column-gap: ($grid-unit * 5);
+		}
+	}
+
+	li {
+		margin-bottom: ($grid-unit * 0.75);
+		break-inside: avoid;
+		line-height: 1.4;
+	}
+
+	a {
+		color: $primary-blue;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+// Obrazy w artykułach: ramka (kafelek) z cieniem, wyśrodkowana, z podpisem
+.blog-figure {
+	max-width: 580px;
+	margin: ($grid-unit * 5) auto;
+	padding: ($grid-unit * 1.5);
+	background-color: #ffffff;
+	border: 1px solid rgba($primary-blue, 0.12);
+	border-radius: $br-radius;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+	transition: box-shadow $transition;
+
+	&:hover {
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+	}
+
+	a {
+		display: block;
+		cursor: zoom-in;
+		border-radius: ($br-radius * 0.5);
+		overflow: hidden;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	figcaption {
+		margin-top: ($grid-unit * 1.5);
+		padding: 0 ($grid-unit * 0.5) ($grid-unit * 0.5);
+		font-size: 0.9rem;
+		line-height: 1.5;
+		text-align: center;
+		color: $text-dark;
+		opacity: 0.8;
+	}
+
+	// Ostrzeżenie (czerwone flagi)
+	&--warning {
+		border-color: rgba(#c0392b, 0.3);
+		box-shadow: 0 8px 24px rgba(192, 57, 43, 0.12);
+		&:hover {
+			box-shadow: 0 12px 32px rgba(192, 57, 43, 0.18);
+		}
+	}
+}
+
+// FAQ – pytania i odpowiedzi
+.blog-faq {
+	h3 {
+		font-size: 1.05rem;
+		margin-top: ($grid-unit * 3);
+		margin-bottom: ($grid-unit * 0.5);
+	}
+	p {
+		margin-bottom: 0;
+	}
+}
+
+// Notka pod artykułem
+.blog-post__note {
+	margin-top: ($grid-unit * 5);
+	padding-top: ($grid-unit * 2);
+	border-top: 1px solid rgba($primary-blue, 0.12);
+	font-size: 0.9rem;
+	font-style: italic;
+	opacity: 0.75;
 }
 
 // --- 7.6. USŁUGI (SERVICES) SECTION ---

@@ -15,6 +15,19 @@
     <meta name="twitter:title" content="Fizjoterapia i Osteopatia Ząbki | FizjoFlow Michał Sumiński">
     <meta name="twitter:description" content="Skuteczna fizjoterapia i rehabilitacja w Ząbkach. Ból kręgosłupa, urazy, stany po operacjach.">
     <meta name="twitter:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
+    <meta name="twitter:image:alt" content="FizjoFlow - Fizjoterapia Ząbki">
+    <meta property="og:site_name" content="FizjoFlow">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:image:alt" content="FizjoFlow - Fizjoterapia Ząbki">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Michał Sumiński">
+    <meta name="theme-color" content="#f4f1ee">
+    <meta name="geo.region" content="PL-MZ">
+    <meta name="geo.placename" content="Ząbki">
+    <meta name="geo.position" content="52.2768;21.1166">
+    <meta name="ICBM" content="52.2768, 21.1166">
+    <link rel="alternate" hreflang="pl" href="https://fizjoflow-suminski.pl/">
+    <link rel="alternate" hreflang="x-default" href="https://fizjoflow-suminski.pl/">
     <title>Fizjoterapia i Osteopatia Ząbki | FizjoFlow Michał Sumiński</title>
     <meta name="description" content="Skuteczna fizjoterapia, osteopatia i rehabilitacja w Ząbkach. Ból kręgosłupa, stany po urazach i operacjach ortopedycznych. Umów wizytę w FizjoFlow!">
 
@@ -44,13 +57,19 @@
         }
 
         .hero, .blog, .uslugi { margin-top: 5rem; }
-        .hero { min-height: calc(100vh - 5rem); display: flex; align-items: center; background-color: #f4f1ee; }
+        .hero { scroll-margin-top: 5rem; min-height: calc(100vh - 5rem); display: flex; align-items: center; background-color: #f4f1ee; }
         .btn { display: inline-block; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; }
         .btn--primary { background-color: #1645a0; color: #ffffff; }
 
         .hero__content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1.5rem; line-height: 1.1; margin-top: 0; }
         .hero__content p { font-size: 1.15rem; max-width: 35rem; margin-bottom: 2.5rem; font-weight: 600; margin-top: 0; }
         .hero__line-break { display: block; margin-top: 0.5rem; }
+
+        /* Fade-in przy wejściu na stronę (inline, żeby ruszyło od pierwszej klatki) */
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @media (prefers-reduced-motion: no-preference) {
+            body { animation: pageFadeIn 0.4s ease-in-out; }
+        }
     </style>
 
     <link rel="preload" href="css/style.css" as="style">
@@ -281,7 +300,7 @@
                             </li>
                             <li>
                                 <strong>Telefon</strong>
-                                <a href="tel:+48123456789">+48 784 075 614</a>
+                                <a href="tel:+48784075614">+48 784 075 614</a>
                             </li>
                             <li>
                                 <strong>E-mail</strong>
@@ -290,6 +309,10 @@
                             <li>
                                 <strong>Godziny otwarcia</strong>
                                 Pn - Pt: 10:00 - 20:00
+                            </li>
+                            <li>
+                                <strong>Skąd przyjeżdżają pacjenci</strong>
+                                Gabinet znajduje się w Ząbkach. Przyjmuję pacjentów z Ząbek, Warszawy (Targówek, Białołęka, Bródno, Tarchomin), Kobyłki, Zielonki, Wołomina i Radzymina.
                             </li>
                         </ul>
                         <div class="contact__socials">
@@ -356,9 +379,6 @@
                         </svg>
                     </a>
                 </div>
-            </div>
-            <div class="footer__seo-keywords" style="margin-top: 2rem; border-top: 1px solid rgba(244, 241, 238, 0.1); padding-top: 5px; font-size: 12px; opacity: 0.5; text-align: center; color: #f4f1ee; line-height: 1.6;">
-                <strong>Obszar działania i popularne usługi:</strong> Fizjoterapeuta Warszawa | Rehabilitacja Targówek | Rehabilitacja Tarchomin | Rehabilitacja Radzymin | Rehabilitacja Wołomin | Rehabilitacja Kobyłka | Rehabilitacja Zielonka | Rehabilitacja Ząbki | Rehabilitacja Białołęka | Rehabilitacja Bródno | Rehabilitacja sportowa | Fizykoterapeuta
             </div>
         </div>
 

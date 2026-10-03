@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /blog/_article-template.html
 
-Sitemap: http://fizjoflow-suminski.pl/sitemap.xml
+Sitemap: https://fizjoflow-suminski.pl/sitemap.xml

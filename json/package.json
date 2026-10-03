@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eymes/-physiotherapy.git"
+    "url": "git+https://github.com/JakupBee/fizjoflow.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/eymes/-physiotherapy/issues"
+    "url": "https://github.com/JakupBee/fizjoflow/issues"
   },
-  "homepage": "https://github.com/eymes/-physiotherapy#readme",
+  "homepage": "https://github.com/JakupBee/fizjoflow#readme",
   "dependencies": {
     "contentful": "^11.10.5",
     "dotenv": "^17.3.1"

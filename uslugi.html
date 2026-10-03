@@ -12,6 +12,22 @@
     <meta property="og:title" content="Cennik Usług Fizjoterapeutycznych Ząbki | FizjoFlow">
     <meta property="og:description" content="Sprawdź cennik fizjoterapii i rehabilitacji w Ząbkach. Leczenie bólu kręgosłupa, fizjoterapia pourazowa i pooperacyjna.">
     <meta property="og:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
+    <meta property="og:image:alt" content="FizjoFlow - Fizjoterapia Ząbki">
+    <meta property="og:site_name" content="FizjoFlow">
+    <meta property="og:locale" content="pl_PL">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://fizjoflow-suminski.pl/uslugi.html">
+    <meta name="twitter:title" content="Cennik Usług Fizjoterapeutycznych Ząbki | FizjoFlow">
+    <meta name="twitter:description" content="Sprawdź cennik fizjoterapii i rehabilitacji w Ząbkach. Leczenie bólu kręgosłupa, fizjoterapia pourazowa i pooperacyjna.">
+    <meta name="twitter:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
+    <meta name="twitter:image:alt" content="FizjoFlow - Fizjoterapia Ząbki">
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Michał Sumiński">
+    <meta name="theme-color" content="#f4f1ee">
+    <link rel="alternate" hreflang="pl" href="https://fizjoflow-suminski.pl/uslugi.html">
+    <link rel="alternate" hreflang="x-default" href="https://fizjoflow-suminski.pl/uslugi.html">
 
     <style>
         body.is-loading * { transition: none !important; animation: none !important; }
@@ -41,6 +57,20 @@
         .hero__content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1.5rem; line-height: 1.1; margin-top: 0; }
         .hero__content p { font-size: 1.15rem; max-width: 35rem; margin-bottom: 2.5rem; font-weight: 600; margin-top: 0; }
         .hero__line-break { display: block; margin-top: 0.5rem; }
+
+        /* Modal i ukryty tekst SEO muszą być ukryte od pierwszej klatki, zanim załaduje się css/style.css.
+           Bez tego pusty modal (z "×") mignął na ekranie przy wejściu na stronę. */
+        .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+        .modal-overlay, .modal { position: fixed; opacity: 0; visibility: hidden; pointer-events: none; }
+        .modal-overlay { inset: 0; }
+        .modal { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); }
+        .modal.active, .modal-overlay.active { pointer-events: auto; }
+
+        /* Fade-in przy wejściu na stronę (inline, żeby ruszyło od pierwszej klatki) */
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @media (prefers-reduced-motion: no-preference) {
+            body { animation: pageFadeIn 0.4s ease-in-out; }
+        }
     </style>
 
     <!-- Asynchroniczne ładowanie arkusza stylów - ONLOAD zdejmuje klasę is-loading! -->
@@ -132,6 +162,16 @@
             ]
         }
     </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://fizjoflow-suminski.pl/" },
+                { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://fizjoflow-suminski.pl/uslugi.html" }
+            ]
+        }
+    </script>
     <link rel="icon" type="image/png" href="img/logo-small.webp">
     <link rel="apple-touch-icon" href="img/logo-small.webp">
     <link rel="canonical" href="https://fizjoflow-suminski.pl/uslugi.html">
@@ -149,7 +189,7 @@
 
             <nav class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="index.html#home">Strona główna</a></li>
+                    <li><a href="index.html">Strona główna</a></li>
                     <li><a href="index.html#about">O mnie</a></li>
                     <li><a href="uslugi.html">Usługi</a></li>
                     <li><a href="blog.html">Blog</a></li>
@@ -382,9 +422,6 @@
                         </svg>
                     </a>
                 </div>
-            </div>
-            <div class="footer__seo-keywords" style="margin-top: 2rem; border-top: 1px solid rgba(244, 241, 238, 0.1); padding-top: 5px; font-size: 12px; opacity: 0.5; text-align: center; color: #f4f1ee; line-height: 1.6;">
-                <strong>Obszar działania i popularne usługi:</strong> Fizjoterapeuta Warszawa | Rehabilitacja Targówek | Rehabilitacja Tarchomin | Rehabilitacja Radzymin | Rehabilitacja Wołomin | Rehabilitacja Kobyłka | Rehabilitacja Zielonka | Rehabilitacja Ząbki | Rehabilitacja Białołęka | Rehabilitacja Bródno | Rehabilitacja sportowa | Fizykoterapeuta
             </div>
         </div>
 
