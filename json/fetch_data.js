@@ -44,14 +44,6 @@ async function fetchData() {
         fs.writeFileSync('./uslugi-data.json', JSON.stringify(uslugiResponse.items));
         console.log('✅ Services data saved!');
 
-        // 3. Fetch Main Photo (for script.js)
-        const photoResponse = await client.getAssets({
-            'fields.title': 'mainPhoto',
-            limit: 1,
-        });
-        fs.writeFileSync('./photo-data.json', JSON.stringify(photoResponse.items));
-        console.log('✅ Main photo data saved!');
-
     } catch (error) {
         console.error('❌ Error fetching data:', error);
         process.exit(1);

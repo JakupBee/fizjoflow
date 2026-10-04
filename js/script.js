@@ -73,15 +73,25 @@ document.addEventListener("DOMContentLoaded", () => {
 		body.classList.add("page-transition-out");
 		setTimeout(() => {
 			window.location.href = url.href;
+			// Zabezpieczenie: jeśli nawigacja się nie rozpocznie / długo trwa (wolna sieć, anulowanie),
+			// nie zostawiaj użytkownika na pustej stronie – pokaż ponownie bieżącą.
+			setTimeout(() => body.classList.remove("page-transition-out"), 2500);
 		}, PAGE_TRANSITION_MS);
 	});
 
 	// Powrót przyciskiem "wstecz" (bfcache) – przywróć widoczność strony
-	window.addEventListener("pageshow", (e) => {
-		if (e.persisted) {
-			body.classList.remove("page-transition-out");
-		}
+	window.addEventListener("pageshow", () => {
+		body.classList.remove("page-transition-out");
 	});
+
+	// Zabezpieczenie: klasa is-loading (blokuje animacje do czasu wczytania CSS) zawsze musi zniknąć,
+	// nawet gdyby zdarzenie onload arkusza stylów nie zadziałało.
+	const clearLoadingState = () => document.documentElement.classList.remove("is-loading");
+	if (document.readyState === "complete") {
+		clearLoadingState();
+	} else {
+		window.addEventListener("load", clearLoadingState, { once: true });
+	}
 
 	// Handle anchor clicks: smooth scroll with offset (navbar height + section padding)
 	const navLinks = document.querySelectorAll(".nav-menu a");
@@ -115,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		window.scrollTo({ top, behavior });
 	}
 
-	// When landing on a URL with a hash (e.g. index.html#contact), the layout may still shift
+	// When landing on a URL with a hash (e.g. /#contact), the layout may still shift
 	// after DOMContentLoaded (images, iframes, and especially 3rd-party widgets).
 	// We "settle" the scroll a few times until the target position stabilizes.
 	function settleAndScrollToHash(hash) {
@@ -195,31 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// --- Pobieranie głównego zdjęcia z Contentful (sekcja O mnie) ---
-	async function loadMainPhoto() {
-		// Tylko strona główna ma sekcję "O mnie" ze zdjęciem (omija zbędny request na podstronach, np. /blog/*)
-		if (!document.querySelector(".about__image .image-box img")) return;
-		try {
-			const response = await fetch('./json/photo-data.json');
-			const items = await response.json();
-	
-			if (items.length > 0) {
-				const asset = items[0];
-				const imageUrl = asset.fields.file.url;
-				const imgElement = document.querySelector(".about__image .image-box img");
-	
-				if (imgElement) {
-					imgElement.src = `https:${imageUrl}`;
-					if (asset.fields.description) {
-						imgElement.alt = asset.fields.description;
-					}
-				}
-			}
-		} catch (error) {
-			console.error("Błąd podczas pobierania zdjęcia mainPhoto:", error);
-		}
-	}
-
 	/*// --- Ukrywanie znaczka Elfsight "Free Google Reviews" (na potrzeby Demo) ---
 	const removeElfsightBadge = setInterval(() => {
 		// Szukamy wszystkich linków wstrzykniętych przez widget, które prowadzą do Elfsight
@@ -238,10 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	setTimeout(() => {
 		clearInterval(removeElfsightBadge);
 	}, 8000);*/
-
-	// Wywołujemy funkcję bezpośrednio, bo i tak jesteśmy już wewnątrz
-	// głównego document.addEventListener("DOMContentLoaded", ...) na samej górze pliku
-	loadMainPhoto();
 
 	// --- OPÓŹNIONE ŁADOWANIE ZEWNĘTRZNYCH WIDGETÓW (SEO & PageSpeed) ---
 	let widgetsLoaded = false;

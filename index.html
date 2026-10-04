@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" class="is-loading">
 
 <head>
     <meta charset="UTF-8">
@@ -8,17 +8,20 @@
     <meta property="og:url" content="https://fizjoflow-suminski.pl/">
     <meta property="og:title" content="Fizjoterapia i Osteopatia Ząbki | FizjoFlow Michał Sumiński">
     <meta property="og:description" content="Skuteczna fizjoterapia i rehabilitacja w Ząbkach. Ból kręgosłupa, urazy, stany po operacjach. Umów wizytę w FizjoFlow - Michał Sumiński.">
-    <meta property="og:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
+    <meta property="og:image" content="https://fizjoflow-suminski.pl/img/michal-suminski-fizjoterapeuta.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="2952">
+    <meta property="og:image:height" content="2972">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://fizjoflow-suminski.pl/">
     <meta name="twitter:title" content="Fizjoterapia i Osteopatia Ząbki | FizjoFlow Michał Sumiński">
     <meta name="twitter:description" content="Skuteczna fizjoterapia i rehabilitacja w Ząbkach. Ból kręgosłupa, urazy, stany po operacjach.">
-    <meta name="twitter:image" content="https://fizjoflow-suminski.pl/img/logo.webp">
-    <meta name="twitter:image:alt" content="FizjoFlow - Fizjoterapia Ząbki">
+    <meta name="twitter:image" content="https://fizjoflow-suminski.pl/img/michal-suminski-fizjoterapeuta.webp">
+    <meta name="twitter:image:alt" content="Michał Sumiński – fizjoterapeuta, FizjoFlow Ząbki">
     <meta property="og:site_name" content="FizjoFlow">
     <meta property="og:locale" content="pl_PL">
-    <meta property="og:image:alt" content="FizjoFlow - Fizjoterapia Ząbki">
+    <meta property="og:image:alt" content="Michał Sumiński – fizjoterapeuta, FizjoFlow Ząbki">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Michał Sumiński">
     <meta name="theme-color" content="#f4f1ee">
@@ -34,10 +37,8 @@
     <link rel="preload" as="image" href="img/herographMobile.webp" media="(max-width: 768px)" fetchpriority="high">
     <link rel="preload" as="image" href="img/herograph.webp" media="(min-width: 769px)" fetchpriority="high">
 
-    <link rel="preload" href="./json/photo-data.json" as="fetch" crossorigin="anonymous">
-
     <style>
-        body.is-loading * { transition: none !important; animation: none !important; }
+        html.is-loading * { transition: none !important; animation: none !important; }
 
         *, *::before, *::after { box-sizing: border-box; }
         body { margin: 0; padding: 0; background-color: #f4f1ee; color: #030d19; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; line-height: 1.3; overflow-x: hidden; }
@@ -73,7 +74,7 @@
     </style>
 
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'; document.body.classList.remove('is-loading');">
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'; document.documentElement.classList.remove('is-loading');">
     <noscript>
         <link rel="stylesheet" href="css/style.css">
     </noscript>
@@ -94,10 +95,36 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://fizjoflow-suminski.pl/#webpage",
+            "url": "https://fizjoflow-suminski.pl/",
+            "name": "Fizjoterapia i Osteopatia Ząbki | FizjoFlow Michał Sumiński",
+            "inLanguage": "pl-PL",
+            "about": { "@id": "https://fizjoflow-suminski.pl/" },
+            "primaryImageOfPage": {
+                "@type": "ImageObject",
+                "@id": "https://fizjoflow-suminski.pl/#primaryimage",
+                "url": "https://fizjoflow-suminski.pl/img/michal-suminski-fizjoterapeuta.webp",
+                "contentUrl": "https://fizjoflow-suminski.pl/img/michal-suminski-fizjoterapeuta.webp",
+                "width": 2952,
+                "height": 2972,
+                "caption": "Michał Sumiński – fizjoterapeuta, FizjoFlow Ząbki"
+            },
+            "image": { "@id": "https://fizjoflow-suminski.pl/#primaryimage" }
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
             "@type": "MedicalClinic",
             "name": "FizjoFlow | Michał Sumiński",
             "description": "Specjalistyczna fizjoterapia, osteopatia, fizykoterapia i rehabilitacja sportowa. Skuteczna pomoc w bólu kręgosłupa, po urazach i operacjach.",
-            "image": "https://fizjoflow-suminski.pl/img/logo.webp",
+            "image": [
+                "https://fizjoflow-suminski.pl/img/michal-suminski-fizjoterapeuta.webp",
+                "https://fizjoflow-suminski.pl/img/logo.webp"
+            ],
+            "logo": "https://fizjoflow-suminski.pl/img/logo.webp",
             "@id": "https://fizjoflow-suminski.pl/",
             "url": "https://fizjoflow-suminski.pl/",
             "telephone": "+48784075614",
@@ -152,7 +179,8 @@
             "founder": {
                 "@type": "Person",
                 "name": "Michał Sumiński",
-                "jobTitle": "Fizjoterapeuta i Osteopata"
+                "jobTitle": "Fizjoterapeuta i Osteopata",
+                "image": "https://fizjoflow-suminski.pl/img/michal-suminski-fizjoterapeuta.webp"
             },
             "makesOffer": [
                 { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Konsultacja fizjoterapeutyczna" }, "priceCurrency": "PLN", "price": "50" },
@@ -169,13 +197,13 @@
     </script>
 </head>
 
-<body class="is-loading">
+<body>
 
     <div class="menu-overlay" id="overlay"></div>
 
     <header class="navbar">
         <div class="container">
-            <div class="logo"><a href="index.html"><img src="img/logo.webp" alt="FizjoFlow - Fizjoterapia Ząbki" width="250" height="70"></a></div>
+            <div class="logo"><a href="./"><img src="img/logo.webp" alt="FizjoFlow - Fizjoterapia Ząbki" width="250" height="70"></a></div>
 
             <nav class="nav-menu" id="navMenu">
                 <ul>
@@ -217,7 +245,7 @@
                 <div class="about__wrapper">
                     <div class="about__image">
                         <div class="image-box">
-                            <img src="img/person.webp" alt="Michał Sumiński - Dobry Fizjoterapeuta Ząbki" width="800" height="1000" loading="lazy">
+                            <img src="img/michal-suminski-fizjoterapeuta.webp" alt="Michał Sumiński – fizjoterapeuta, FizjoFlow Ząbki" width="2952" height="2972" loading="lazy">
                             <!-- <div class="image-box__badge">
                                 <span>5+ lat doświadczenia</span>
                             </div> -->
