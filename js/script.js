@@ -84,15 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		body.classList.remove("page-transition-out");
 	});
 
-	// Zabezpieczenie: klasa is-loading (blokuje animacje do czasu wczytania CSS) zawsze musi zniknąć,
-	// nawet gdyby zdarzenie onload arkusza stylów nie zadziałało.
-	const clearLoadingState = () => document.documentElement.classList.remove("is-loading");
-	if (document.readyState === "complete") {
-		clearLoadingState();
-	} else {
-		window.addEventListener("load", clearLoadingState, { once: true });
-	}
-
 	// Handle anchor clicks: smooth scroll with offset (navbar height + section padding)
 	const navLinks = document.querySelectorAll(".nav-menu a");
 	function getTopForHash(hash) {
