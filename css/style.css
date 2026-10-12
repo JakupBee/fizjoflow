@@ -941,6 +941,22 @@ body.blog-page main {
   width: 100%;
   overflow-x: hidden;
 }
+.uslugi__header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.uslugi__title {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  color: #1645a0;
+  margin-bottom: 1rem;
+}
+.uslugi__subtitle {
+  font-size: 1.2rem;
+  color: #030d19;
+  opacity: 0.8;
+  max-width: 40rem;
+  margin: 0 auto;
+}
 .uslugi__services {
   display: grid;
   grid-template-columns: 1fr;
@@ -976,6 +992,10 @@ body.blog-page main {
   min-height: 280px;
   box-sizing: border-box;
   max-width: 100%;
+  scroll-margin-top: 6rem;
+}
+.service-card__details {
+  display: none;
 }
 .service-card__badge {
   position: absolute;
@@ -1214,6 +1234,17 @@ body.blog-page main {
 }
 .modal__description p:last-child {
   margin-bottom: 0;
+}
+.modal__description ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.modal__description ul:last-child {
+  margin-bottom: 0;
+}
+.modal__description li {
+  margin-bottom: 0.5rem;
 }
 
 .service-box {

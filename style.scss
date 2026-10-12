@@ -1078,6 +1078,26 @@ body {
 		overflow-x: hidden; // Zapobiega wystawaniu poza kontener
 	}
 
+	// Widoczny nagłówek strony (H1) – wygląd jak nagłówek bloga
+	&__header {
+		text-align: center;
+		margin-bottom: ($grid-unit * 10);
+	}
+
+	&__title {
+		font-size: clamp(2.5rem, 6vw, 3.5rem);
+		color: $primary-blue;
+		margin-bottom: ($grid-unit * 2);
+	}
+
+	&__subtitle {
+		font-size: 1.2rem;
+		color: $text-dark;
+		opacity: 0.8;
+		max-width: 40rem;
+		margin: 0 auto;
+	}
+
 	&__services {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -1122,6 +1142,13 @@ body {
 	min-height: 280px; // Zapewnia jednakową minimalną wysokość
 	box-sizing: border-box; // Padding wliczony w szerokość
 	max-width: 100%; // Zapobiega przekroczeniu szerokości
+	scroll-margin-top: 6rem; // Link bezpośredni (#id) nie chowa karty pod menu
+
+	// Pełny opis usługi: prawdziwy tekst w HTML (indeksowany przez wyszukiwarki),
+	// pokazywany użytkownikowi w oknie po kliknięciu „Opis” (js/uslugi.js).
+	&__details {
+		display: none;
+	}
 
 	&__badge {
 		position: absolute;
@@ -1403,6 +1430,20 @@ body {
 			&:last-child {
 				margin-bottom: 0;
 			}
+		}
+
+		ul {
+			list-style: disc;
+			padding-left: ($grid-unit * 3);
+			margin-bottom: ($grid-unit * 2);
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		li {
+			margin-bottom: ($grid-unit * 1);
 		}
 	}
 }

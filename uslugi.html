@@ -56,9 +56,9 @@
         .hero__content p { font-size: 1.15rem; max-width: 35rem; margin-bottom: 2.5rem; font-weight: 600; margin-top: 0; }
         .hero__line-break { display: block; margin-top: 0.5rem; }
 
-        /* Modal i ukryty tekst SEO muszą być ukryte od pierwszej klatki, zanim załaduje się css/style.css.
+        /* Modal i opisy usług (otwierane przyciskiem „Opis”) muszą być ukryte od pierwszej klatki.
            Bez tego pusty modal (z "×") mignął na ekranie przy wejściu na stronę. */
-        .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+        .service-card__details { display: none; }
         .modal-overlay, .modal { position: fixed; opacity: 0; visibility: hidden; pointer-events: none; }
         .modal-overlay { inset: 0; }
         .modal { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); }
@@ -72,6 +72,10 @@
     </style>
 
     <link rel="stylesheet" href="css/style.css">
+    <noscript>
+        <!-- Bez JavaScript nie da się otworzyć okna z opisem – pokaż opisy usług bezpośrednio w kartach. -->
+        <style>.service-card__details { display: block; margin-bottom: 1.5rem; }.service-card__btn { display: none; }</style>
+    </noscript>
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap" media="print" onload="this.media='all'">
@@ -141,20 +145,223 @@
                 "@type": "Person",
                 "name": "Michał Sumiński",
                 "jobTitle": "Fizjoterapeuta i Osteopata"
-            },
-            "makesOffer": [
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Konsultacja fizjoterapeutyczna" }, "priceCurrency": "PLN", "price": "50" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rehabilitacja przed- i pooperacyjna" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fizjoterapia przeciwbólowa/leczenie bólu" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fizjoterapia pourazowa" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fizjoterapia przeciążeń i urazów sportowych" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fizjoterapia neurologiczna" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fizjoterapia wad postawy (dzieci)" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Terapia stomatologiczna" }, "priceCurrency": "PLN", "price": "180" },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rehabilitacja domowa" }, "priceCurrency": "PLN", "price": "250" }
-            ]
+            }
         }
     </script>
+    <!-- BUILD:services-jsonld:START -->
+    <!-- Ten blok jest generowany z data/services.json (node build/build-services.js) – nie edytuj go ręcznie. -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#konsultacja-fizjoterapeutyczna",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#konsultacja-fizjoterapeutyczna",
+              "name": "Konsultacja fizjoterapeutyczna",
+              "description": "Krótkie spotkanie mające na celu przeprowadzenie wywiadu oraz analizę dostępnych badań obrazowych lub ich opisów. Konsultacja nie obejmuje elementów terapii ani zaleceń ćwiczeń. Jest skierowana przede wszystkim do osób, które nie są pewne, czy ich problem kwalifikuje się do pracy z fizjoterapeutą i potrzebują wstępnej oceny oraz ukierunkowania dalszych działań.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "50",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#rehabilitacja-przed-i-pooperacyjna",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#rehabilitacja-przed-i-pooperacyjna",
+              "name": "Rehabilitacja przed- i pooperacyjna",
+              "description": "Jesteś po operacji lub przygotowujesz się do zabiegu? Podczas wizyty dowiesz się: czego unikać na danym etapie leczenia, jak i ile ćwiczyć, jak bezpiecznie wracać do sprawności. Pomagam przejść przez proces rehabilitacji w sposób świadomy, bezpieczny i dostosowany do etapu leczenia.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-przeciwbolowa",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-przeciwbolowa",
+              "name": "Fizjoterapia przeciwbólowa/leczenie bólu",
+              "description": "Terapia skierowana do osób odczuwających ból utrudniający codzienne funkcjonowanie. Wiele dolegliwości bólowych wynika z przeciążeń układu ruchu i nie ustępuje samoistnie. Specjalizuję się w leczeniu bólu w obrębie układu ruchu, w tym m.in.: bóle głowy i migreny, bóle odcinka szyjnego i karku, bóle barków, bóle łokci i nadgarstków, drętwienie dłoni, bóle kręgosłupa piersiowego, bóle żeber, bóle kręgosłupa lędźwiowego, rwa kulszowa i rwa udowa, bóle bioder, bóle kolan, bóle stóp i drętwienie palców. Jeśli ból utrzymuje się mimo leczenia lub odpoczynku - umów się na wizytę i sprawdź, jak mogę Ci pomóc.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-pourazowa",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-pourazowa",
+              "name": "Fizjoterapia pourazowa",
+              "description": "Skręcenie stawu, naderwanie mięśnia lub ścięgna? Jeśli doznałeś urazu i nie wiesz, jak bezpiecznie wrócić do sprawności, ta forma terapii jest dla Ciebie. Dzięki odpowiednio dobranym i zaprogramowanym ćwiczeniom możliwy jest szybszy i bezpieczny powrót do aktywności.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-urazow-sportowych",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-urazow-sportowych",
+              "name": "Fizjoterapia przeciążeń i urazów sportowych",
+              "description": "Oferta skierowana do osób aktywnych fizycznie — zarówno amatorsko, jak i zawodowo. Jeśli: regularnie odczuwasz napięcia i przeciążenia, ból lub sztywność ogranicza Twój potencjał sportowy, chcesz zapobiegać kontuzjom, umów się na wizytę i zobacz, jak możemy pracować nad poprawą jakości ruchu i regeneracji.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-neurologiczna",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-neurologiczna",
+              "name": "Fizjoterapia neurologiczna",
+              "description": "Terapia skierowana do osób z przewlekłymi schorzeniami układu nerwowego. Proces terapeutyczny opiera się głównie na celowanej aktywności ruchowej, wspieranej odpowiednio dobranymi technikami manualnymi.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-wad-postawy-dzieci",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#fizjoterapia-wad-postawy-dzieci",
+              "name": "Fizjoterapia wad postawy (dzieci)",
+              "description": "U Twojego dziecka stwierdzono wadę postawy? Wiele z nich wynika z nierównowagi napięciowej w obrębie układu mięśniowego i nie musi oznaczać poważnego problemu. Podczas wizyty oceniam postawę dziecka i dobieram odpowiednie działania terapeutyczne.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#terapia-stomatologiczna",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#terapia-stomatologiczna",
+              "name": "Terapia stomatologiczna",
+              "description": "Oferta skierowana do osób cierpiących m.in. z powodu: bruksizmu, napięć w obrębie twarzy, żuchwy i szyi, dolegliwości związanych z układem stomatognatycznym.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#rehabilitacja-domowa",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#rehabilitacja-domowa",
+              "name": "Rehabilitacja domowa",
+              "description": "Rehabilitacja domowa jest skierowana do osób, które z różnych powodów nie mogą lub nie powinny dojeżdżać do gabinetu. Dotyczy to m.in. pacjentów po zabiegach operacyjnych, osób z ograniczoną mobilnością, w ostrych stanach bólowych lub w okresie rekonwalescencji. Program rehabilitacji jest indywidualnie dostosowany do stanu zdrowia, możliwości funkcjonalnych oraz warunków domowych.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "250",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#trening-medyczny",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#trening-medyczny",
+              "name": "Trening medyczny",
+              "description": "Wiesz że ruch jest kluczowy dla naszego zdrowia ale nie wiesz od czego zacząć? Już trenujesz ale nie masz pewności co do techniki lub kierunku, w którym powinien podążać twój trening? Umów się na wizytę a nauczę cie jak wykonywać poszczególne ćwiczenia i nauczę cię dozować je aby zachować pełnię zdrowia",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "200",
+                "priceCurrency": "PLN"
+              }
+            },
+            {
+              "@type": "Service",
+              "@id": "https://fizjoflow-suminski.pl/uslugi.html#przygotowanie-motoryczne",
+              "url": "https://fizjoflow-suminski.pl/uslugi.html#przygotowanie-motoryczne",
+              "name": "Przygotowanie motoryczne",
+              "description": "Uprawiasz konkretną dyscyplinę sportową i chcesz poprawić swoje wyniki? Na treningach ciągle czujesz że nie odblokowujesz swojego pełnego potencjału? Wciąż odnawiają się stare kontuzje? Umów się na wizytę a przeprowadzę cie przez odpowiednio dobrany trening nakierowany na poprawę wyników i przygotowanie ciała do twojej dyscypliny.",
+              "provider": {
+                "@id": "https://fizjoflow-suminski.pl/"
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Ząbki"
+              }
+            }
+          ]
+        }
+    </script>
+    <!-- BUILD:services-jsonld:END -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -202,12 +409,16 @@
         <section class="uslugi">
             <div class="container">
                 <div class="uslugi__wrapper">
-                    <!-- Statyczny HTML wygenerowany dla robotów Google -->
-                    <h1 class="visually-hidden">Cennik usług fizjoterapeutycznych i osteopatii w Ząbkach</h1>
+                    <header class="uslugi__header">
+                        <h1 class="uslugi__title">Cennik i usługi fizjoterapii w Ząbkach</h1>
+                        <p class="uslugi__subtitle">Oferta gabinetu FizjoFlow w Ząbkach wraz z cenami i czasem trwania wizyty. Kliknij „Opis”, aby dowiedzieć się, dla kogo jest dana usługa.</p>
+                    </header>
 
+                    <!-- BUILD:services-grid:START -->
+                    <!-- Ten blok jest generowany z data/services.json (node build/build-services.js) – nie edytuj go ręcznie. -->
                     <div class="uslugi__grid">
 
-                        <article class="service-card" data-service-id="1">
+                        <article class="service-card" id="konsultacja-fizjoterapeutyczna" data-service-id="konsultacja-fizjoterapeutyczna">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
                                     <span class="service-card__price">50 zł</span>
@@ -215,146 +426,161 @@
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Konsultacja fizjoterapeutyczna</h3>
-
-                                <!-- Ukryty tekst dla SEO -->
-                                <div class="visually-hidden">
-                                    <p><strong>Konsultacja fizjoterapeutyczna</strong></p><p>Krótkie spotkanie mające na celu przeprowadzenie wywiadu oraz analizę dostępnych badań obrazowych lub ich opisów.</p><p>Konsultacja <strong>nie obejmuje elementów terapii ani zaleceń ćwiczeń</strong>.</p><p>Jest skierowana przede wszystkim do osób, które <strong>nie są pewne, czy ich problem kwalifikuje się do pracy z fizjoterapeutą</strong> i potrzebują wstępnej oceny oraz ukierunkowania dalszych działań.</p>
+                                <h2 class="service-card__title">Konsultacja fizjoterapeutyczna</h2>
+                                <div class="service-card__details">
+                                    <p>Krótkie spotkanie mające na celu przeprowadzenie wywiadu oraz analizę dostępnych badań obrazowych lub ich opisów.</p>
+                                    <p>Konsultacja <strong>nie obejmuje elementów terapii ani zaleceń ćwiczeń</strong>.</p>
+                                    <p>Jest skierowana przede wszystkim do osób, które <strong>nie są pewne, czy ich problem kwalifikuje się do pracy z fizjoterapeutą</strong> i potrzebują wstępnej oceny oraz ukierunkowania dalszych działań.</p>
                                 </div>
-
-                                <button class="service-card__btn" data-service-id="1" aria-label="Pokaż opis usługi Konsultacja fizjoterapeutyczna">
+                                <button type="button" class="service-card__btn" data-service-id="konsultacja-fizjoterapeutyczna" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Konsultacja fizjoterapeutyczna">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="2">
+                        <article class="service-card" id="rehabilitacja-przed-i-pooperacyjna" data-service-id="rehabilitacja-przed-i-pooperacyjna">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Rehabilitacja przed- i pooperacyjna</h3>
-                                <div class="visually-hidden">
-                                    <p>Jesteś po operacji lub przygotowujesz się do zabiegu?</p><p>Podczas wizyty dowiesz się:</p><ul><li>czego unikać na danym etapie leczenia,</li><li>jak i ile ćwiczyć,</li><li>jak bezpiecznie wracać do sprawności.</li></ul><p>Pomagam przejść przez proces rehabilitacji w sposób świadomy, bezpieczny i dostosowany do etapu leczenia.</p>
+                                <h2 class="service-card__title">Rehabilitacja przed- i pooperacyjna</h2>
+                                <div class="service-card__details">
+                                    <p>Jesteś po operacji lub przygotowujesz się do zabiegu?</p>
+                                    <p>Podczas wizyty dowiesz się:</p>
+                                    <ul><li>czego unikać na danym etapie leczenia,</li><li>jak i ile ćwiczyć,</li><li>jak bezpiecznie wracać do sprawności.</li></ul>
+                                    <p>Pomagam przejść przez proces rehabilitacji w sposób świadomy, bezpieczny i dostosowany do etapu leczenia.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="2" aria-label="Pokaż opis usługi Rehabilitacja przed- i pooperacyjna">
+                                <button type="button" class="service-card__btn" data-service-id="rehabilitacja-przed-i-pooperacyjna" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Rehabilitacja przed- i pooperacyjna">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="3">
+                        <article class="service-card" id="fizjoterapia-przeciwbolowa" data-service-id="fizjoterapia-przeciwbolowa">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Fizjoterapia przeciwbólowa/leczenie bólu</h3>
-                                <div class="visually-hidden">
-                                    <p>Terapia skierowana do osób odczuwających ból utrudniający codzienne funkcjonowanie.</p><p>Wiele dolegliwości bólowych wynika z przeciążeń układu ruchu i nie ustępuje samoistnie.</p><p>Specjalizuję się w leczeniu bólu w obrębie układu ruchu, w tym m.in.:</p><ul><li>bóle głowy i migreny, </li><li>bóle odcinka szyjnego i karku, </li><li>bóle barków, </li><li>bóle łokci i nadgarstków, drętwienie dłoni, </li><li>bóle kręgosłupa piersiowego, </li><li>bóle żeber, </li><li>bóle kręgosłupa lędźwiowego, </li><li>rwa kulszowa i rwa udowa, </li><li>bóle bioder, </li><li>bóle kolan, </li><li>bóle stóp i drętwienie palców. </li></ul><p>Jeśli ból utrzymuje się mimo leczenia lub odpoczynku - umów się na wizytę i sprawdź, jak mogę Ci pomóc.</p>
+                                <h2 class="service-card__title">Fizjoterapia przeciwbólowa/leczenie bólu</h2>
+                                <div class="service-card__details">
+                                    <p>Terapia skierowana do osób odczuwających ból utrudniający codzienne funkcjonowanie.</p>
+                                    <p>Wiele dolegliwości bólowych wynika z przeciążeń układu ruchu i nie ustępuje samoistnie.</p>
+                                    <p>Specjalizuję się w leczeniu bólu w obrębie układu ruchu, w tym m.in.:</p>
+                                    <ul><li>bóle głowy i migreny,</li><li>bóle odcinka szyjnego i karku,</li><li>bóle barków,</li><li>bóle łokci i nadgarstków, drętwienie dłoni,</li><li>bóle kręgosłupa piersiowego,</li><li>bóle żeber,</li><li>bóle kręgosłupa lędźwiowego,</li><li>rwa kulszowa i rwa udowa,</li><li>bóle bioder,</li><li>bóle kolan,</li><li>bóle stóp i drętwienie palców.</li></ul>
+                                    <p>Jeśli ból utrzymuje się mimo leczenia lub odpoczynku - umów się na wizytę i sprawdź, jak mogę Ci pomóc.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="3" aria-label="Pokaż opis usługi Fizjoterapia przeciwbólowa/leczenie bólu">
+                                <button type="button" class="service-card__btn" data-service-id="fizjoterapia-przeciwbolowa" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Fizjoterapia przeciwbólowa/leczenie bólu">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="4">
+                        <article class="service-card" id="fizjoterapia-pourazowa" data-service-id="fizjoterapia-pourazowa">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Fizjoterapia pourazowa</h3>
-                                <div class="visually-hidden">
-                                    <p>Skręcenie stawu, naderwanie mięśnia lub ścięgna?</p><p>Jeśli doznałeś urazu i nie wiesz, jak bezpiecznie wrócić do sprawności, ta forma terapii jest dla Ciebie.</p><p>Dzięki odpowiednio dobranym i zaprogramowanym ćwiczeniom możliwy jest <strong>szybszy i bezpieczny powrót do aktywności</strong>.</p>
+                                <h2 class="service-card__title">Fizjoterapia pourazowa</h2>
+                                <div class="service-card__details">
+                                    <p>Skręcenie stawu, naderwanie mięśnia lub ścięgna?</p>
+                                    <p>Jeśli doznałeś urazu i nie wiesz, jak bezpiecznie wrócić do sprawności, ta forma terapii jest dla Ciebie.</p>
+                                    <p>Dzięki odpowiednio dobranym i zaprogramowanym ćwiczeniom możliwy jest <strong>szybszy i bezpieczny powrót do aktywności</strong>.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="4" aria-label="Pokaż opis usługi Fizjoterapia pourazowa">
+                                <button type="button" class="service-card__btn" data-service-id="fizjoterapia-pourazowa" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Fizjoterapia pourazowa">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="5">
+                        <article class="service-card" id="fizjoterapia-urazow-sportowych" data-service-id="fizjoterapia-urazow-sportowych">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Fizjoterapia przeciążeń i urazów sportowych</h3>
-                                <div class="visually-hidden">
-                                    <p>Oferta skierowana do osób aktywnych fizycznie — zarówno amatorsko, jak i zawodowo.</p><p>Jeśli:</p><ul><li>regularnie odczuwasz napięcia i przeciążenia,</li><li>ból lub sztywność ogranicza Twój potencjał sportowy,</li><li>chcesz zapobiegać kontuzjom,</li></ul><p>umów się na wizytę i zobacz, jak możemy pracować nad poprawą jakości ruchu i regeneracji.</p>
+                                <h2 class="service-card__title">Fizjoterapia przeciążeń i urazów sportowych</h2>
+                                <div class="service-card__details">
+                                    <p>Oferta skierowana do osób aktywnych fizycznie — zarówno amatorsko, jak i zawodowo.</p>
+                                    <p>Jeśli:</p>
+                                    <ul><li>regularnie odczuwasz napięcia i przeciążenia,</li><li>ból lub sztywność ogranicza Twój potencjał sportowy,</li><li>chcesz zapobiegać kontuzjom,</li></ul>
+                                    <p>umów się na wizytę i zobacz, jak możemy pracować nad poprawą jakości ruchu i regeneracji.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="5" aria-label="Pokaż opis usługi Fizjoterapia przeciążeń i urazów sportowych">
+                                <button type="button" class="service-card__btn" data-service-id="fizjoterapia-urazow-sportowych" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Fizjoterapia przeciążeń i urazów sportowych">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="6">
+                        <article class="service-card" id="fizjoterapia-neurologiczna" data-service-id="fizjoterapia-neurologiczna">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Fizjoterapia neurologiczna</h3>
-                                <div class="visually-hidden">
-                                    <p>Terapia skierowana do osób z przewlekłymi schorzeniami układu nerwowego.</p><p>Proces terapeutyczny opiera się głównie na <strong>celowanej aktywności ruchowej</strong>, wspieranej odpowiednio dobranymi technikami manualnymi.</p>
+                                <h2 class="service-card__title">Fizjoterapia neurologiczna</h2>
+                                <div class="service-card__details">
+                                    <p>Terapia skierowana do osób z przewlekłymi schorzeniami układu nerwowego.</p>
+                                    <p>Proces terapeutyczny opiera się głównie na <strong>celowanej aktywności ruchowej</strong>, wspieranej odpowiednio dobranymi technikami manualnymi.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="6" aria-label="Pokaż opis usługi Fizjoterapia neurologiczna">
+                                <button type="button" class="service-card__btn" data-service-id="fizjoterapia-neurologiczna" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Fizjoterapia neurologiczna">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="7">
+                        <article class="service-card" id="fizjoterapia-wad-postawy-dzieci" data-service-id="fizjoterapia-wad-postawy-dzieci">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Fizjoterapia wad postawy (dzieci)</h3>
-                                <div class="visually-hidden">
-                                    <p>U Twojego dziecka stwierdzono wadę postawy?</p><p>Wiele z nich wynika z nierównowagi napięciowej w obrębie układu mięśniowego i <strong>nie musi oznaczać poważnego problemu</strong>.</p><p>Podczas wizyty oceniam postawę dziecka i dobieram odpowiednie działania terapeutyczne.</p>
+                                <h2 class="service-card__title">Fizjoterapia wad postawy (dzieci)</h2>
+                                <div class="service-card__details">
+                                    <p>U Twojego dziecka stwierdzono wadę postawy?</p>
+                                    <p>Wiele z nich wynika z nierównowagi napięciowej w obrębie układu mięśniowego i <strong>nie musi oznaczać poważnego problemu</strong>.</p>
+                                    <p>Podczas wizyty oceniam postawę dziecka i dobieram odpowiednie działania terapeutyczne.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="7" aria-label="Pokaż opis usługi Fizjoterapia wad postawy (dzieci)">
+                                <button type="button" class="service-card__btn" data-service-id="fizjoterapia-wad-postawy-dzieci" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Fizjoterapia wad postawy (dzieci)">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="8">
+                        <article class="service-card" id="terapia-stomatologiczna" data-service-id="terapia-stomatologiczna">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
-                                    <span class="service-card__price">180 zł</span>
+                                    <span class="service-card__price">200 zł</span>
                                     <span class="service-card__time">50 min</span>
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Terapia stomatologiczna</h3>
-                                <div class="visually-hidden">
-                                    <p>Oferta skierowana do osób cierpiących m.in. z powodu:</p><ul><li>bruksizmu,</li><li>napięć w obrębie twarzy, żuchwy i szyi,</li><li>dolegliwości związanych z układem stomatognatycznym.</li></ul>
+                                <h2 class="service-card__title">Terapia stomatologiczna</h2>
+                                <div class="service-card__details">
+                                    <p>Oferta skierowana do osób cierpiących m.in. z powodu:</p>
+                                    <ul><li>bruksizmu,</li><li>napięć w obrębie twarzy, żuchwy i szyi,</li><li>dolegliwości związanych z układem stomatognatycznym.</li></ul>
                                 </div>
-                                <button class="service-card__btn" data-service-id="8" aria-label="Pokaż opis usługi Terapia stomatologiczna">
+                                <button type="button" class="service-card__btn" data-service-id="terapia-stomatologiczna" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Terapia stomatologiczna">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
-                        <article class="service-card" data-service-id="9">
+                        <article class="service-card" id="rehabilitacja-domowa" data-service-id="rehabilitacja-domowa">
                             <div class="service-card__badge">
                                 <div class="service-card__badge-content">
                                     <span class="service-card__price">250 zł</span>
@@ -362,17 +588,55 @@
                                 </div>
                             </div>
                             <div class="service-card__content">
-                                <h3 class="service-card__title">Rehabilitacja domowa </h3>
-                                <div class="visually-hidden">
+                                <h2 class="service-card__title">Rehabilitacja domowa</h2>
+                                <div class="service-card__details">
                                     <p>Rehabilitacja domowa jest skierowana do osób, które z różnych powodów <strong>nie mogą lub nie powinny dojeżdżać do gabinetu</strong>. Dotyczy to m.in. pacjentów po zabiegach operacyjnych, osób z ograniczoną mobilnością, w ostrych stanach bólowych lub w okresie rekonwalescencji. Program rehabilitacji jest <strong>indywidualnie dostosowany</strong> do stanu zdrowia, możliwości funkcjonalnych oraz warunków domowych.</p>
                                 </div>
-                                <button class="service-card__btn" data-service-id="9" aria-label="Pokaż opis usługi Rehabilitacja domowa ">
+                                <button type="button" class="service-card__btn" data-service-id="rehabilitacja-domowa" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Rehabilitacja domowa">
+                                    Opis <span class="service-card__btn-arrow">→</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="service-card" id="trening-medyczny" data-service-id="trening-medyczny">
+                            <div class="service-card__badge">
+                                <div class="service-card__badge-content">
+                                    <span class="service-card__price">200 zł</span>
+                                    <span class="service-card__time">50 min</span>
+                                </div>
+                            </div>
+                            <div class="service-card__content">
+                                <h2 class="service-card__title">Trening medyczny</h2>
+                                <div class="service-card__details">
+                                    <p>Wiesz że ruch jest kluczowy dla naszego zdrowia ale nie wiesz od czego zacząć? Już trenujesz ale nie masz pewności co do techniki lub kierunku, w którym powinien podążać twój trening?</p>
+                                    <p>Umów się na wizytę a nauczę cie jak wykonywać poszczególne ćwiczenia i nauczę cię dozować je aby zachować pełnię zdrowia</p>
+                                </div>
+                                <button type="button" class="service-card__btn" data-service-id="trening-medyczny" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Trening medyczny">
+                                    Opis <span class="service-card__btn-arrow">→</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="service-card" id="przygotowanie-motoryczne" data-service-id="przygotowanie-motoryczne">
+                            <div class="service-card__badge">
+                                <div class="service-card__badge-content">
+                                    <span class="service-card__price">Zapytaj</span>
+                                </div>
+                            </div>
+                            <div class="service-card__content">
+                                <h2 class="service-card__title">Przygotowanie motoryczne</h2>
+                                <div class="service-card__details">
+                                    <p>Uprawiasz konkretną dyscyplinę sportową i chcesz poprawić swoje wyniki? Na treningach ciągle czujesz że nie odblokowujesz swojego pełnego potencjału? Wciąż odnawiają się stare kontuzje?</p>
+                                    <p>Umów się na wizytę a przeprowadzę cie przez odpowiednio dobrany trening nakierowany na poprawę wyników i przygotowanie ciała do twojej dyscypliny.</p>
+                                </div>
+                                <button type="button" class="service-card__btn" data-service-id="przygotowanie-motoryczne" aria-haspopup="dialog" aria-controls="serviceModal" aria-label="Pokaż opis usługi Przygotowanie motoryczne">
                                     Opis <span class="service-card__btn-arrow">→</span>
                                 </button>
                             </div>
                         </article>
 
                     </div>
+                    <!-- BUILD:services-grid:END -->
                 </div>
             </div>
         </section>
@@ -423,7 +687,6 @@
 
     <script src="js/script.js"></script>
     <script src="js/uslugi.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
 </body>
 
 </html>
